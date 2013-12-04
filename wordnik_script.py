@@ -1,7 +1,7 @@
 # setting up the wordnik API
 from wordnik import*
 apiUrl = 'http://api.wordnik.com/v4'
-apiKey = '36e62c10651ad471c9e130213a707cd21c115dc40f4ce81e4'
+apiKey = [YOUR API KEY HERE]
 client = swagger.ApiClient(apiKey, apiUrl)
 wordApi = WordApi.WordApi(client)
 
