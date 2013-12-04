@@ -1,10 +1,10 @@
 # setting up the wordnik API
 from wordnik import*
 apiUrl = 'http://api.wordnik.com/v4'
-apiKey = [YOUR API KEY HERE]
+apiKey = '36e62c10651ad471c9e130213a707cd21c115dc40f4ce81e4'
 client = swagger.ApiClient(apiKey, apiUrl)
 wordApi = WordApi.WordApi(client)
-
+definitions_list=[]
 # takes a string
 def gather_definitions(word):
 
@@ -16,7 +16,6 @@ def gather_definitions(word):
     #setting up counters used for incrementing
     Y=0
     speech_used=[]
-    definitions_list=[]
     
     # for loop that checks if the counter is still within the length of the list, and whether
     # or not the part of speech has been defined already... This essentially allows us to gather
@@ -29,7 +28,18 @@ def gather_definitions(word):
                 # this formats a string for reddit markdown and appends to a list
                 definitions_list.append("**"+definition[Y].word+"**: *"+definition[Y].partOfSpeech+"* "+definition[Y].text)
             Y+=1
-        else:
-            break
-    print definitions_list
-gather_definitions(INPUT STRING HERE)
+
+
+def comment_formatter(word):
+# not necessarily final
+    gather_definitions(word)
+    Z=0
+    # prints list, more for purposes of class display
+    for W in range(len(definitions_list)):
+    	if Z <= (len(definitions_list)-1):
+    	    print definitions_list[Z]
+    	    Z+=1
+    	else:
+    	    break
+
+comment_formatter('lumber')
