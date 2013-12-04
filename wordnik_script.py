@@ -32,4 +32,4 @@ def gather_definitions(word):
         else:
             break
     print definitions_list
-gather_definitions('dance')
+gather_definitions(INPUT STRING HERE)
