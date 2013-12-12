@@ -1,6 +1,6 @@
 from wordnik import*
 import praw
-import pprint
+import time
 # setting up wordnik API
 apiUrl = 'http://api.wordnik.com/v4'
 apiKey = '36e62c10651ad471c9e130213a707cd21c115dc40f4ce81e4'
@@ -12,7 +12,6 @@ r = praw.Reddit (user_agent='Wordnik_Bot')
 r.login('wordnik_bot', 'wordnik_bot')
 subreddits = r.get_subreddit('test') # defines which subreddits to crawl
 subreddits_comments = subreddits.get_comments() #s separates out flattened comments
-
 
 
 
@@ -31,11 +30,11 @@ def gather_definitions(word): # takes a string
             if definition[Y].partOfSpeech not in speech_used:            
                 speech_used.append(definition[Y].partOfSpeech)
                 # this formats a string for reddit markdown and appends to a list
-                definitions_list.append("**"+definition[Y].word+"**: *"+definition[Y].partOfSpeech+"* "+definition[Y].text)
+                definitions_list.append("- " + "**"+definition[Y].word+"**: *"+definition[Y].partOfSpeech+"* "+definition[Y].text)
             Y+=1
 
 
-
+# removes the word from the body
 def word_remover(body):
     first_pass = body.split("define ",1)[1]
     word = first_pass.replace(".","")
@@ -45,7 +44,7 @@ def word_remover(body):
 
 
 
-
+# formats the comment with bold and italics
 def comment_formatter(word):
 # not necessarily final
     gather_definitions(word)
@@ -60,19 +59,19 @@ def comment_formatter(word):
     	    break
     return response
 
-cache=[]
 
 
+cache=[] # to prevent doing the same work many times
+keep_alive= True # keeps the program running
+while (keep_alive):
 
-
-for submission in subreddits_comments:
-
-
-    if "wordnik_bot" in submission.body.lower():
-    	body = submission.body
-    	word = word_remover(body)
-    	definitions_list=[]
-    	response = comment_formatter(word)
-    	submission.reply(response)
-
-
+    for submission in subreddits_comments:
+        if submission.id not in cache:
+            if "wordnik_bot" in submission.body.lower():
+            	body = submission.body
+            	word = word_remover(body)
+            	definitions_list=[]
+            	response = comment_formatter(word)
+            	submission.reply(response)
+            	cache.append(submission.id)
+    time.sleep(1800) # sleep and re-loop
