@@ -12,6 +12,10 @@ This program uses the [Wordnik Python API](https://github.com/wordnik/wordnik-py
 ## Contributor Guidelines
 At this point in time, this project is being undertaken as part of a final assignment for a programming course at the University of North Carolina, Chapel Hill. Upon completion of that project, a full set of contributor guidelines will be opened to allow for further expansion on the bot re: using the vast amount of wordnik metadata to offer services other than simple word definitions.
 
+The milestones created for this project detail the three major problems that need to be fixed/capabilities that need to be added within this project. Those are excellent starting points for contribution.
+
+From there, new milestones would be created for adding other new wordnik capabilities.
+
 # Milestones
 
 - [X] *Wordnik*
