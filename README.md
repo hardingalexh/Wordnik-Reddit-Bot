@@ -14,13 +14,13 @@ At this point in time, this project is being undertaken as part of a final assig
 
 # Milestones
 
-- [x] *Wordnik*
-- [x] Connect to API
-- [x] Pull appropriate data from word definition
-- [x] Parse Data
-- [x] Display Data
-- [ ] *Reddit*
-- [ ] find comments by name
-- [ ] pull word from comment
-- [ ] embed wordnik script
-- [ ] reply to comment
+- [X] *Wordnik*
+- [X] Connect to API
+- [X] Pull appropriate data from word definition
+- [X] Parse Data
+- [X] Display Data
+- [X] *Reddit*
+- [X] find comments by name
+- [X] pull word from comment
+- [X] embed wordnik script
+- [X] reply to comment
